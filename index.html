@@ -2,278 +2,208 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Kickwavesocials — Social Media & Performance Marketing</title>
-  <meta name="description" content="Kickwavesocials is a creative social media agency helping brands grow with content, strategy, and performance marketing." />
-  <meta name="google-site-verification" content="aLQ6alcyMKnfDouiIgRY95Y7-03hnfeTKxSEvAuqgd4" />
-  <link rel="icon" href="/favicon.png" type="image/png">
-  <link rel="apple-touch-icon" href="/favicon.png">
+  <title>KickWaveSocials | We Build Brands</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --primary: #0047b3;
-      --dark: #111;
-      --text: #555;
-      --bg: #ffffff;
-      --card: #f6f7f9;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, sans-serif;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--dark);
-      line-height: 1.6;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background: #fff;
-      border-bottom: 1px solid #eee;
-      padding: 16px 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      z-index: 100;
-    }
-
-    header a {
-      margin-left: 24px;
-      text-decoration: none;
-      color: #333;
-      font-weight: 500;
-    }
-
-    section {
-      padding: 80px 24px;
-      max-width: 1100px;
-      margin: auto;
-    }
-
-    h1 {
-      font-size: 56px;
-      line-height: 1.1;
-      margin-bottom: 16px;
-    }
-
-    h2 {
-      font-size: 36px;
-      margin-bottom: 24px;
-    }
-
-    p {
-      color: var(--text);
-      max-width: 700px;
-    }
-
-    .hero {
-      text-align: center;
-      padding-top: 120px;
-    }
-
-    .hero p {
-      margin: 16px auto 32px;
-      font-size: 18px;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 14px 36px;
-      background: var(--primary);
-      color: #fff;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 600;
-      box-shadow: 0 12px 30px rgba(0,71,179,0.25);
-    }
-
-    .grid {
-      display: grid;
-      gap: 24px;
-    }
-
-    .grid-2 { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-    .card {
-      background: var(--card);
-      padding: 28px;
-      border-radius: 18px;
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.08);
-    }
-
-    .tag {
-      display: inline-block;
-      background: var(--primary);
-      color: #fff;
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 12px;
-      margin-bottom: 12px;
-    }
-
-    footer {
-      background: #0e0e0e;
-      color: #fff;
-      padding: 60px 24px;
-    }
-
-    footer p, footer a {
-      color: #bbb;
-      text-decoration: none;
-    }
-
-    footer strong {
-      color: #fff;
-    }
-
-    @media (max-width: 768px) {
-      h1 { font-size: 42px; }
-      h2 { font-size: 30px; }
-    }
+    body { font-family: 'Inter', sans-serif; }
   </style>
 </head>
 
-<body>
+<body class="bg-black text-white overflow-x-hidden">
 
-<header>
-  <strong>Kickwavesocials</strong>
-  <nav>
-    <a href="#about">About</a>
+<!-- BACKGROUND GLOW -->
+<div class="fixed inset-0 -z-10">
+  <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-purple-600/30 blur-[160px]"></div>
+  <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/30 blur-[160px]"></div>
+</div>
+
+<!-- NAVBAR -->
+<nav class="flex justify-between items-center px-10 py-6">
+  <h1 class="text-2xl font-extrabold text-pink-500">KickWaveSocials</h1>
+  <div class="hidden md:flex gap-8 text-gray-300">
     <a href="#services">Services</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<section class="hero">
-  <h1>We Help Brands Grow With<br/>Social Media & Performance Marketing</h1>
-  <p><strong>Strategy that works. Content that converts. Growth that’s real.</strong><br/>
-  Turning attention into engagement and conversions through content and performance.</p>
-  <a class="btn" href="#contact">Book a Free Call</a>
-</section>
-
-<section id="about">
-  <h2>About Kickwavesocials</h2>
-  <p>
-    Kickwavesocials is a creative social media agency based in India, built by young founders who deeply understand attention, culture, and growth.
-    <br/><br/>
-    We combine trend-first thinking with fast execution and founder-led strategy to help startups, creators, and modern brands scale online.
-    <br/><br/>
-    <strong style="color:#0047b3;">No fluff. No corporate talk. Just real growth and results.</strong>
-  </p>
-</section>
-
-<section id="services">
-  <h2>What We Do</h2>
-  <div class="grid grid-2">
-    <div class="card">
-      <h3>Social Media Management</h3>
-      <p>Full-service management across Instagram, LinkedIn, and X — strategy, content, and engagement.</p>
-    </div>
-    <div class="card">
-      <h3>Instagram Content & Reels</h3>
-      <p>Trend-first reels, posts, and stories designed to capture attention and drive engagement.</p>
-    </div>
-    <div class="card">
-      <h3>Growth Strategy</h3>
-      <p>Data-driven strategies to build audience, reach, and consistency organically.</p>
-    </div>
-    <div class="card">
-      <h3>Paid Advertising (Meta Ads)</h3>
-      <p>Performance-focused ad campaigns optimized for conversions, not just clicks.</p>
-    </div>
-    <div class="card">
-      <h3>Brand Positioning</h3>
-      <p>Build a strong, consistent online identity that stands out in crowded markets.</p>
-    </div>
+    <a href="#pricing">Pricing</a>
+    <a href="#why">Why Us</a>
   </div>
-</section>
-
-<section id="work">
-  <h2>Our Work</h2>
-  <p>Sample results based on internal campaigns, test projects, and strategy simulations.</p>
-  <br/>
-  <div class="grid grid-3">
-    <div class="card">
-      <span class="tag">REELS</span>
-      <h3>2.5M+ Views</h3>
-      <p>High-engagement reels for lifestyle brand</p>
-    </div>
-    <div class="card">
-      <span class="tag">POSTS</span>
-      <h3>150K+ Reach</h3>
-      <p>Consistent content strategy for tech startup</p>
-    </div>
-    <div class="card">
-      <span class="tag">PAID ADS</span>
-      <h3>4.2x ROAS</h3>
-      <p>Meta ads campaign for e-commerce brand</p>
-    </div>
-    <div class="card">
-      <span class="tag">GROWTH</span>
-      <h3>10K → 50K</h3>
-      <p>Organic growth in 90 days for creator account</p>
-    </div>
-    <div class="card">
-      <span class="tag">STRATEGY</span>
-      <h3>3× Engagement</h3>
-      <p>Complete content overhaul for B2B brand</p>
-    </div>
-  </div>
-</section>
-
-<section>
-  <h2>Why Kickwavesocials?</h2>
-  <div class="grid grid-2">
-    <div class="card"><strong>Founder-Led Strategy</strong><br/>Direct access to founders who care about growth.</div>
-    <div class="card"><strong>Trend-First, Culture-Aware</strong><br/>Always relevant, never outdated.</div>
-    <div class="card"><strong>Fast Execution</strong><br/>No bureaucracy. We move fast.</div>
-    <div class="card"><strong>Growth > Vanity Metrics</strong><br/>We focus on results that matter.</div>
-  </div>
-</section>
-
-<section id="contact">
-  <h2>Let’s Build Your Brand</h2>
-  <p>Tell us about your project and we’ll get back within 24 hours.</p>
-  <br/>
-
-  <a class="btn" 
-     href="https://docs.google.com/forms/d/e/1FAIpQLServZNMEfXWnIVY0zhVlp7I41BeEnwODNgEi9z_EP87qF9Cfg/viewform?usp=header" 
-     target="_blank">
-     Start Your Project
+  <a href="#contact" class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full font-semibold">
+    Contact Us
   </a>
+</nav>
 
-  <br/><br/>
-  <p><strong>Email:</strong> 
-     <a href="mailto:hello@kickwavesocials.com">
-       Kickwavesocials@gmail.com
-     </a>
+<!-- HERO -->
+<section class="px-10 py-28 text-center max-w-6xl mx-auto">
+  <span class="inline-block mb-6 px-5 py-2 rounded-full bg-white/5 border border-white/10">
+    ✨ Instagram Growth & Content Agency
+  </span>
+
+  <h2 class="text-5xl md:text-7xl font-black leading-tight">
+    We Don’t Manage Pages<br>
+    <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
+      We Build Brands
+    </span>
+  </h2>
+
+  <p class="mt-8 text-gray-400 max-w-3xl mx-auto text-lg">
+    Content, growth, page management, and websites — everything your brand needs to dominate Instagram.
   </p>
+
+  <div class="mt-12 flex justify-center gap-6">
+    <a href="#pricing" class="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 rounded-full font-bold">
+      Get Started →
+    </a>
+    <a href="#services" class="border border-white/20 px-8 py-4 rounded-full">
+      View Services
+    </a>
+  </div>
 </section>
 
+<!-- STATS -->
+<section class="grid md:grid-cols-3 gap-10 px-10 pb-28 text-center">
+  <div>
+    <h3 class="text-4xl font-extrabold text-pink-500">500+</h3>
+    <p class="text-gray-400">Brands Served</p>
+  </div>
+  <div>
+    <h3 class="text-4xl font-extrabold text-pink-500">10M+</h3>
+    <p class="text-gray-400">Reach Generated</p>
+  </div>
+  <div>
+    <h3 class="text-4xl font-extrabold text-pink-500">95%</h3>
+    <p class="text-gray-400">Client Satisfaction</p>
+  </div>
+</section>
 
-<footer>
-  <p><strong>Kickwavesocials</strong><br/>Bold. Creative. Results-Driven.</p>
-  <br/>
-  <p>Email: Kickwavesocials@gmail.com<br/>
-     Instagram: @kickwavesocials<br/>
-     Based in India</p>
-  <br/>
-  <p>© 2026 Kickwavesocials. All rights reserved.</p>
+<!-- SERVICES -->
+<section id="services" class="px-10 py-28 max-w-6xl mx-auto">
+  <h3 class="text-4xl font-extrabold text-center mb-6">
+    Our <span class="text-pink-500">Services</span>
+  </h3>
+  <p class="text-gray-400 text-center mb-16">
+    Everything you need to grow your brand on Instagram.
+  </p>
+
+  <div class="grid md:grid-cols-2 gap-10">
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="text-xl font-bold mb-2">🎬 Reels Creation</h4>
+      <p class="text-gray-400">2 high-quality reels per month</p>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="text-xl font-bold mb-2">🎨 Post Design</h4>
+      <p class="text-gray-400">3 branded static posts</p>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="text-xl font-bold mb-2">📱 Page Management</h4>
+      <p class="text-gray-400">Captions, hashtags, posting schedule</p>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="text-xl font-bold mb-2">🌐 Website</h4>
+      <p class="text-gray-400">Simple landing website for brand trust</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="px-10 py-28">
+  <h3 class="text-4xl font-extrabold text-center mb-6">
+    Simple <span class="text-pink-500">Pricing</span>
+  </h3>
+
+  <div class="max-w-md mx-auto mt-16 bg-white/5 p-10 rounded-3xl border border-pink-500">
+    <h4 class="text-xl font-bold mb-4">✨ Starter Growth Pack</h4>
+    <p class="text-5xl font-extrabold text-pink-500 mb-6">₹3,000<span class="text-sm text-gray-400">/month</span></p>
+
+    <ul class="space-y-3 text-gray-300">
+      <li>✔ 2 Instagram Reels</li>
+      <li>✔ 3 Static Posts</li>
+      <li>✔ Full Page Management</li>
+      <li>✔ Profile Optimization</li>
+      <li>✔ 1 Website / Landing Page</li>
+    </ul>
+
+    <a href="#contact" class="block mt-10 text-center bg-gradient-to-r from-purple-500 to-pink-500 py-4 rounded-full font-bold">
+      Claim This Offer
+    </a>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section id="why" class="px-10 py-28 max-w-6xl mx-auto">
+  <h3 class="text-4xl font-extrabold text-center mb-16">
+    Why <span class="text-pink-500">KickWaveSocials?</span>
+  </h3>
+
+  <div class="grid md:grid-cols-3 gap-10">
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="font-bold mb-2">Gen-Z Creators</h4>
+      <p class="text-gray-400">We understand trends because we are the audience.</p>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="font-bold mb-2">AI + Human Creativity</h4>
+      <p class="text-gray-400">Best tools combined with real creativity.</p>
+    </div>
+
+    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
+      <h4 class="font-bold mb-2">Results Focused</h4>
+      <p class="text-gray-400">Content designed to drive growth & conversions.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contact" class="px-10 py-28">
+  <div class="max-w-5xl mx-auto bg-white/5 p-16 rounded-3xl border border-white/10 text-center">
+    <h3 class="text-4xl font-extrabold mb-6">
+      Ready To Grow <span class="text-pink-500">Your Brand?</span>
+    </h3>
+    <p class="text-gray-400 mb-10">
+      Let’s start your Instagram growth journey today.
+    </p>
+    <a href="https://wa.me/919084317811" class="bg-gradient-to-r from-purple-500 to-pink-500 px-10 py-4 rounded-full font-bold">
+      WhatsApp Us →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="px-10 py-10 border-t border-white/10 grid md:grid-cols-3 gap-10">
+  <div>
+    <h4 class="text-pink-500 font-bold text-xl mb-2">KickWaveSocials</h4>
+    <p class="text-gray-400 text-sm">
+      Your trusted partner for Instagram growth and brand building.
+    </p>
+  </div>
+
+  <div>
+    <h4 class="font-bold mb-2">Quick Links</h4>
+    <ul class="text-gray-400 space-y-2">
+      <li>Services</li>
+      <li>Pricing</li>
+      <li>Why Us</li>
+    </ul>
+  </div>
+
+  <div>
+    <h4 class="font-bold mb-2">Get In Touch</h4>
+    <p class="text-gray-400 text-sm">📞 +91 9084317811</p>
+    <p class="text-gray-400 text-sm">📧 kickwavesocials@gmail.com</p>
+    <p class="text-gray-400 text-sm">📷 @kickwavesocials</p>
+  </div>
 </footer>
+
+<div class="text-center text-gray-500 text-sm py-4">
+  © 2026 KickWaveSocials. All rights reserved.
+</div>
 
 </body>
 </html>
-
