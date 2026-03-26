@@ -1,209 +1,525 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>KickWaveSocials | We Build Brands</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>KickWaveSocials — We Build Brands</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --black: #080808;
+  --black2: #0e0e0e;
+  --black3: #141414;
+  --black4: #1c1c1c;
+  --lime: #c8ff00;
+  --lime2: #b0e800;
+  --lime-dim: rgba(200,255,0,0.08);
+  --lime-border: rgba(200,255,0,0.2);
+  --white: #f5f5f0;
+  --muted: #666;
+  --muted2: #444;
+  --text: #e8e8e0;
+  --border: rgba(255,255,255,0.06);
+}
 
-  <!-- Tailwind -->
-  <script src="https://cdn.tailwindcss.com"></script>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  cursor: none;
+}
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+/* ── CURSOR ── */
+.cursor {
+  width: 8px; height: 8px;
+  background: var(--lime);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9999;
+  transform: translate(-50%,-50%);
+  transition: width .2s, height .2s, background .2s;
+}
+.cursor-ring {
+  width: 32px; height: 32px;
+  border: 1px solid var(--lime);
+  border-radius: 50%;
+  position: fixed; top: 0; left: 0;
+  pointer-events: none; z-index: 9998;
+  transform: translate(-50%,-50%);
+  transition: all .12s ease;
+  opacity: 0.5;
+}
+@media (max-width:768px){ .cursor,.cursor-ring{ display:none; } body{ cursor:auto; } }
 
-  <style>
-    body { font-family: 'Inter', sans-serif; }
-  </style>
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 900;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.6rem 5%;
+  transition: padding .3s, background .3s, border-color .3s;
+  border-bottom: 1px solid transparent;
+}
+nav.scrolled {
+  padding: 1rem 5%;
+  background: rgba(8,8,8,0.92);
+  border-color: var(--border);
+  backdrop-filter: blur(24px);
+}
+.logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem; letter-spacing: 2px;
+  color: var(--white); text-decoration: none;
+}
+.logo em { color: var(--lime); font-style: normal; }
+
+.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+  font-weight: 500; transition: color .2s;
+}
+.nav-links a:hover { color: var(--white); }
+.nav-cta {
+  padding: .55rem 1.4rem;
+  background: var(--lime) !important;
+  color: var(--black) !important;
+  border-radius: 2px;
+  font-weight: 700 !important;
+  transition: transform .15s, box-shadow .15s !important;
+}
+.nav-cta:hover { transform: translateY(-2px) !important; box-shadow: 0 6px 20px rgba(200,255,0,0.3) !important; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  justify-content: flex-end;
+  padding: 0 5% 5rem;
+  position: relative; overflow: hidden;
+}
+.hero-bg-text {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(120px, 22vw, 280px);
+  letter-spacing: -4px;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.04);
+  white-space: nowrap;
+  pointer-events: none; user-select: none; z-index: 0;
+}
+.hero-grid {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(200,255,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,255,0,0.03) 1px, transparent 1px);
+  background-size: 80px 80px; z-index: 0;
+}
+.hero-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, transparent 30%, var(--black) 85%);
+  z-index: 1;
+}
+.lime-orb {
+  position: absolute; top: -120px; right: -80px;
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(200,255,0,0.12) 0%, transparent 70%);
+  z-index: 0; animation: orbPulse 5s ease-in-out infinite;
+}
+@keyframes orbPulse { 0%,100%{opacity:.7;transform:scale(1);} 50%{opacity:1;transform:scale(1.08);} }
+
+.hero-inner { position: relative; z-index: 2; }
+
+.hero-tag {
+  display: inline-flex; align-items: center; gap: .7rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 1.8rem;
+  animation: fadeUp .8s ease both;
+}
+.tag-line { width: 32px; height: 1px; background: var(--lime); }
+
+h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 11vw, 10rem);
+  line-height: 0.92; letter-spacing: -1px; color: var(--white);
+  animation: fadeUp .8s .12s ease both;
+}
+h1 .outline { color: transparent; -webkit-text-stroke: 2px var(--lime); }
+h1 .lime-fill { color: var(--lime); }
+
+.hero-bottom {
+  display: flex; justify-content: space-between; align-items: flex-end;
+  margin-top: 3rem; gap: 2rem; flex-wrap: wrap;
+  animation: fadeUp .8s .25s ease both;
+}
+.hero-sub { max-width: 420px; color: var(--muted); font-size: .95rem; line-height: 1.75; font-weight: 300; }
+.hero-sub strong { color: var(--white); font-weight: 500; }
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-shrink: 0; }
+
+.btn-lime {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9rem 2rem; background: var(--lime); color: var(--black);
+  border-radius: 2px; border: none;
+  font-family: 'Space Grotesk', sans-serif; font-size: .9rem; font-weight: 700; letter-spacing: .04em;
+  text-decoration: none; cursor: pointer;
+  transition: transform .15s, box-shadow .2s; white-space: nowrap;
+}
+.btn-lime:hover { transform: translateY(-3px); box-shadow: 0 10px 40px rgba(200,255,0,0.35); }
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: .5rem;
+  padding: .9rem 1.8rem; background: transparent; color: var(--white);
+  border: 1px solid var(--border); border-radius: 2px;
+  font-family: 'Space Grotesk', sans-serif; font-size: .9rem; font-weight: 500;
+  text-decoration: none; cursor: pointer; transition: border-color .2s, background .2s; white-space: nowrap;
+}
+.btn-outline:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); }
+
+.hero-stats {
+  display: flex; gap: 3rem;
+  animation: fadeUp .8s .38s ease both;
+  margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.hstat-num { font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; color: var(--lime); letter-spacing: 1px; line-height: 1; }
+.hstat-label { font-family: 'DM Mono', monospace; font-size: 0.68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-top: .3rem; }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(30px);} to{opacity:1;transform:none;} }
+
+/* ── TICKER ── */
+.ticker { overflow: hidden; background: var(--lime); padding: .65rem 0; }
+.ticker-track { display: flex; gap: 0; width: max-content; animation: ticker 18s linear infinite; }
+.ticker-item {
+  display: flex; align-items: center; padding: 0 2rem;
+  font-family: 'Bebas Neue', sans-serif; font-size: 1rem; letter-spacing: .15em;
+  color: var(--black); white-space: nowrap; border-right: 1px solid rgba(0,0,0,0.15);
+}
+.ticker-dot { width: 5px; height: 5px; background: var(--black); border-radius: 50%; margin-right: 1.5rem; opacity: .4; }
+@keyframes ticker { to{ transform:translateX(-50%); } }
+
+/* ── SECTIONS ── */
+section { padding: 8rem 5%; }
+.section-label {
+  font-family: 'DM Mono', monospace; font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--lime); margin-bottom: 1.2rem; display: flex; align-items: center; gap: .8rem;
+}
+.section-label::before { content:''; width:24px; height:1px; background:var(--lime); }
+
+h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1; letter-spacing: .5px; color: var(--white);
+}
+h2 .outline-h2 { color: transparent; -webkit-text-stroke: 1.5px var(--white); }
+.section-sub { color: var(--muted); font-size: .95rem; line-height: 1.75; max-width: 500px; margin-top: .8rem; font-weight: 300; }
+
+.reveal { opacity:0; transform:translateY(36px); transition:opacity .7s ease, transform .7s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── SERVICES ── */
+#services { background: var(--black); }
+.services-header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:2rem; margin-bottom:4rem; }
+.services-grid {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 1px; background: var(--border); border: 1px solid var(--border);
+}
+@media(max-width:900px){ .services-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:560px){ .services-grid{ grid-template-columns:1fr; } }
+
+.svc {
+  background: var(--black2); padding: 2.5rem 2rem;
+  transition: background .25s; position: relative; overflow: hidden; cursor: pointer;
+}
+.svc:hover { background: var(--black3); }
+.svc::after {
+  content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+  background: var(--lime); transform: scaleX(0); transform-origin: left; transition: transform .3s ease;
+}
+.svc:hover::after { transform: scaleX(1); }
+.svc-num { font-family: 'DM Mono', monospace; font-size:.7rem; color: var(--muted2); letter-spacing:.1em; margin-bottom:1.5rem; }
+.svc-icon { font-size: 1.6rem; margin-bottom: 1rem; display:block; }
+.svc-title { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: .5rem; }
+.svc-desc { color: var(--muted); font-size: .88rem; line-height: 1.65; font-weight:300; }
+.svc-tag { display:inline-block; margin-top:1.5rem; padding:.25rem .7rem; border:1px solid var(--lime-border); font-size:.72rem; letter-spacing:.08em; color:var(--lime); font-family:'DM Mono', monospace; }
+
+/* ── PRICING ── */
+#pricing { background: var(--black2); }
+.pricing-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; margin-top: 4rem; }
+@media(max-width:800px){ .pricing-layout{ grid-template-columns:1fr; gap:3rem; } }
+.pricing-left .big-price { font-family: 'Bebas Neue', sans-serif; font-size: clamp(5rem,12vw,9rem); line-height: 1; color: var(--lime); letter-spacing: -2px; }
+.pricing-left .price-note { font-family:'DM Mono', monospace; font-size:.75rem; color:var(--muted); letter-spacing:.1em; text-transform:uppercase; margin-top:.5rem; }
+.pricing-left p { color:var(--muted); font-size:.95rem; line-height:1.75; font-weight:300; margin-top:1.5rem; max-width:340px; }
+
+.pricing-card { background: var(--black3); border: 1px solid var(--border); padding: 3rem 2.5rem; position: relative; }
+.pricing-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background: var(--lime); }
+.plan-badge { display:inline-flex; align-items:center; gap:.5rem; font-family:'DM Mono', monospace; font-size:.7rem; letter-spacing:.12em; text-transform:uppercase; color:var(--black); background:var(--lime); padding:.3rem .8rem; margin-bottom:2rem; }
+.plan-name { font-family:'Bebas Neue', sans-serif; font-size:1.6rem; letter-spacing:.05em; color:var(--white); margin-bottom:.3rem; }
+.plan-tagline { color:var(--muted); font-size:.85rem; font-weight:300; }
+.plan-divider { height:1px; background:var(--border); margin:2rem 0; }
+.plan-features { list-style:none; display:flex; flex-direction:column; gap:.9rem; }
+.plan-features li { display:flex; align-items:flex-start; gap:.9rem; font-size:.9rem; color:var(--text); font-weight:300; }
+.feat-check { width:18px; height:18px; flex-shrink:0; border:1px solid var(--lime); display:flex; align-items:center; justify-content:center; font-size:.65rem; color:var(--lime); margin-top:1px; }
+.plan-cta { display:block; width:100%; margin-top:2.5rem; padding:1rem; text-align:center; background:var(--lime); color:var(--black); border:none; border-radius:2px; font-family:'Space Grotesk', sans-serif; font-size:.95rem; font-weight:700; letter-spacing:.04em; text-decoration:none; cursor:pointer; transition:transform .15s, box-shadow .2s; }
+.plan-cta:hover { transform:translateY(-2px); box-shadow:0 10px 40px rgba(200,255,0,0.3); }
+
+/* ── WHY ── */
+#why { background: var(--black); }
+.why-layout { display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:start; }
+@media(max-width:800px){ .why-layout{ grid-template-columns:1fr; gap:3rem; } }
+.why-cards { display:flex; flex-direction:column; gap:0; }
+.why-card { padding:2rem 1.5rem; border-bottom:1px solid var(--border); display:flex; gap:1.5rem; transition:background .2s; cursor:default; }
+.why-card:first-child { border-top:1px solid var(--border); }
+.why-card:hover { background: var(--black3); }
+.why-num { font-family:'DM Mono', monospace; font-size:.72rem; color:var(--muted2); letter-spacing:.1em; flex-shrink:0; padding-top:.15rem; }
+.why-title { font-family:'Space Grotesk', sans-serif; font-size:1rem; font-weight:700; color:var(--white); margin-bottom:.4rem; }
+.why-desc { color:var(--muted); font-size:.88rem; line-height:1.65; font-weight:300; }
+.why-right { padding-top:1rem; }
+.big-statement { font-family:'Bebas Neue', sans-serif; font-size: clamp(2.5rem,5vw,4rem); line-height:1.05; color:var(--white); margin-bottom:2rem; }
+.big-statement .hl { color:var(--lime); }
+.why-quote { font-size:.95rem; color:var(--muted); line-height:1.75; font-weight:300; padding-left:1.5rem; border-left:2px solid var(--lime); }
+
+/* ── PROCESS ── */
+#process { background: var(--black2); }
+.process-header { max-width:500px; margin-bottom:5rem; }
+.process-list { display:grid; grid-template-columns:repeat(4,1fr); gap:0; border:1px solid var(--border); }
+@media(max-width:700px){ .process-list{ grid-template-columns:1fr 1fr; } }
+@media(max-width:400px){ .process-list{ grid-template-columns:1fr; } }
+.p-step { padding:2.5rem 2rem; border-right:1px solid var(--border); position:relative; overflow:hidden; transition: background .25s; }
+.p-step:last-child { border-right:none; }
+.p-step:hover { background:var(--black3); }
+.p-step::before { content:''; position:absolute; top:0; left:0; bottom:0; width:2px; background:var(--lime); transform:scaleY(0); transform-origin:top; transition:transform .4s ease; }
+.p-step:hover::before { transform:scaleY(1); }
+.p-num { font-family:'Bebas Neue', sans-serif; font-size:3.5rem; color:var(--black4); line-height:1; margin-bottom:1.2rem; letter-spacing:.02em; -webkit-text-stroke: 1px var(--border); }
+.p-title { font-family:'Space Grotesk', sans-serif; font-size:.95rem; font-weight:700; color:var(--white); margin-bottom:.5rem; }
+.p-desc { color:var(--muted); font-size:.83rem; line-height:1.6; font-weight:300; }
+
+/* ── CTA ── */
+#contact { background: var(--black); padding: 10rem 5%; }
+.cta-inner { display: flex; flex-direction:column; border: 1px solid var(--border); position: relative; overflow:hidden; }
+.cta-top { padding:5rem; background: var(--black2); position:relative; z-index:1; }
+.cta-grid-bg { position:absolute; inset:0; background-image: linear-gradient(rgba(200,255,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(200,255,0,0.04) 1px, transparent 1px); background-size:60px 60px; pointer-events:none; }
+.cta-glow { position:absolute; bottom:-100px; right:-100px; width:400px; height:400px; background:radial-gradient(circle, rgba(200,255,0,0.12), transparent 70%); pointer-events:none; }
+.cta-top h2 { font-size: clamp(2.8rem,6vw,5.5rem); position:relative; }
+.cta-top h2 .outline-h2 { -webkit-text-stroke:1.5px var(--lime); }
+.cta-top .section-sub { max-width:480px; position:relative; margin-top:1.2rem; }
+.cta-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-top:2.5rem; position:relative; z-index:1; }
+.cta-bottom { padding:2rem 5rem; background:var(--black3); display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; border-top:1px solid var(--border); }
+.contact-item { display:flex; align-items:center; gap:.7rem; font-family:'DM Mono', monospace; font-size:.78rem; color:var(--muted); letter-spacing:.05em; text-decoration:none; transition:color .2s; }
+.contact-item:hover { color:var(--lime); }
+.contact-dot { width:6px; height:6px; background:var(--lime); border-radius:50%; }
+@media(max-width:700px){ .cta-top{ padding:3rem 2rem; } .cta-bottom{ padding:1.5rem 2rem; flex-direction:column; align-items:flex-start; } }
+
+/* ── FOOTER ── */
+footer { padding: 2.5rem 5%; border-top: 1px solid var(--border); background: var(--black2); display: flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; }
+.footer-logo { font-family:'Bebas Neue', sans-serif; font-size:1.2rem; letter-spacing:2px; color:var(--white); text-decoration:none; }
+.footer-logo em { color:var(--lime); font-style:normal; }
+.footer-links { display:flex; gap:2.5rem; list-style:none; }
+.footer-links a { font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; color:var(--muted2); text-decoration:none; transition:color .2s; }
+.footer-links a:hover { color:var(--lime); }
+.footer-copy { font-family:'DM Mono', monospace; font-size:.72rem; color:var(--muted2); letter-spacing:.05em; }
+</style>
 </head>
+<body>
 
-<body class="bg-black text-white overflow-x-hidden">
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
 
-<!-- BACKGROUND GLOW -->
-<div class="fixed inset-0 -z-10">
-  <div class="absolute top-0 left-0 w-[600px] h-[600px] bg-purple-600/30 blur-[160px]"></div>
-  <div class="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/30 blur-[160px]"></div>
-</div>
-
-<!-- NAVBAR -->
-<nav class="flex justify-between items-center px-10 py-6">
-  <h1 class="text-2xl font-extrabold text-pink-500">KickWaveSocials</h1>
-  <div class="hidden md:flex gap-8 text-gray-300">
-    <a href="#services">Services</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#why">Why Us</a>
-  </div>
-  <a href="#contact" class="bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-2 rounded-full font-semibold">
-    Contact Us
-  </a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">Kick<em>Wave</em>Socials</a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="https://wa.me/919084317811" class="nav-cta">Get Started →</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
-<section class="px-10 py-28 text-center max-w-6xl mx-auto">
-  <span class="inline-block mb-6 px-5 py-2 rounded-full bg-white/5 border border-white/10">
-    ✨ Instagram Growth & Content Agency
-  </span>
-
-  <h2 class="text-5xl md:text-7xl font-black leading-tight">
-    We Don’t Manage Pages<br>
-    <span class="bg-gradient-to-r from-purple-400 to-pink-500 bg-clip-text text-transparent">
-      We Build Brands
-    </span>
-  </h2>
-
-  <p class="mt-8 text-gray-400 max-w-3xl mx-auto text-lg">
-    Content, growth, page management, and websites — everything your brand needs to dominate Instagram.
-  </p>
-
-  <div class="mt-12 flex justify-center gap-6">
-    <a href="#pricing" class="bg-gradient-to-r from-purple-500 to-pink-500 px-8 py-4 rounded-full font-bold">
-      Get Started →
-    </a>
-    <a href="#services" class="border border-white/20 px-8 py-4 rounded-full">
-      View Services
-    </a>
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-vignette"></div>
+  <div class="lime-orb"></div>
+  <div class="hero-bg-text">BRANDS</div>
+  <div class="hero-inner">
+    <div class="hero-tag"><span class="tag-line"></span>Instagram Growth & Content Agency — EST. 2024</div>
+    <h1>WE DON'T<br/>MANAGE<br/><span class="outline">PAGES</span><br/>WE BUILD <span class="lime-fill">BRANDS</span></h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Content, growth, page management, and websites —<br/><strong>everything your brand needs to dominate Instagram.</strong></p>
+      <div class="hero-actions">
+        <a href="https://wa.me/919084317811" class="btn-lime">WhatsApp Us →</a>
+        <a href="#services" class="btn-outline">View Services</a>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><div class="hstat-num">500+</div><div class="hstat-label">Brands Served</div></div>
+      <div><div class="hstat-num">10M+</div><div class="hstat-label">Reach Generated</div></div>
+      <div><div class="hstat-num">95%</div><div class="hstat-label">Client Satisfaction</div></div>
+    </div>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="grid md:grid-cols-3 gap-10 px-10 pb-28 text-center">
-  <div>
-    <h3 class="text-4xl font-extrabold text-pink-500">500+</h3>
-    <p class="text-gray-400">Brands Served</p>
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Instagram Reels</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Brand Identity</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Content Strategy</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Page Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Hashtag Growth</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Website Design</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Profile Optimization</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Post Design</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Instagram Reels</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Brand Identity</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Content Strategy</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Page Management</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Hashtag Growth</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Website Design</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Profile Optimization</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Post Design</div>
   </div>
-  <div>
-    <h3 class="text-4xl font-extrabold text-pink-500">10M+</h3>
-    <p class="text-gray-400">Reach Generated</p>
-  </div>
-  <div>
-    <h3 class="text-4xl font-extrabold text-pink-500">95%</h3>
-    <p class="text-gray-400">Client Satisfaction</p>
-  </div>
-</section>
+</div>
 
 <!-- SERVICES -->
-<section id="services" class="px-10 py-28 max-w-6xl mx-auto">
-  <h3 class="text-4xl font-extrabold text-center mb-6">
-    Our <span class="text-pink-500">Services</span>
-  </h3>
-  <p class="text-gray-400 text-center mb-16">
-    Everything you need to grow your brand on Instagram.
-  </p>
-
-  <div class="grid md:grid-cols-2 gap-10">
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="text-xl font-bold mb-2">🎬 Reels Creation</h4>
-      <p class="text-gray-400">2 high-quality reels per month</p>
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <div class="section-label">What We Do</div>
+      <h2>EVERY TOOL<br/><span class="outline-h2">YOUR BRAND</span><br/>NEEDS TO WIN</h2>
     </div>
-
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="text-xl font-bold mb-2">🎨 Post Design</h4>
-      <p class="text-gray-400">3 branded static posts</p>
-    </div>
-
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="text-xl font-bold mb-2">📱 Page Management</h4>
-      <p class="text-gray-400">Captions, hashtags, posting schedule</p>
-    </div>
-
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="text-xl font-bold mb-2">🌐 Website</h4>
-      <p class="text-gray-400">Simple landing website for brand trust</p>
-    </div>
+    <p class="section-sub" style="max-width:320px;">From scroll-stopping reels to full page management — we handle it all.</p>
+  </div>
+  <div class="services-grid reveal">
+    <div class="svc"><div class="svc-num">001</div><span class="svc-icon">🎬</span><div class="svc-title">Reels Creation</div><p class="svc-desc">Cinematic, scroll-stopping reels crafted with trending audio, sharp edits, and hooks that hold attention.</p><span class="svc-tag">2 REELS / MONTH</span></div>
+    <div class="svc"><div class="svc-num">002</div><span class="svc-icon">🎨</span><div class="svc-title">Post Design</div><p class="svc-desc">Branded static posts with cohesive visual identity — carousels, infographics, quote designs built to be saved.</p><span class="svc-tag">3 POSTS / MONTH</span></div>
+    <div class="svc"><div class="svc-num">003</div><span class="svc-icon">📱</span><div class="svc-title">Page Management</div><p class="svc-desc">Captions that convert, hashtag research, optimal posting schedules — your feed managed like a media company.</p><span class="svc-tag">FULL MANAGEMENT</span></div>
+    <div class="svc"><div class="svc-num">004</div><span class="svc-icon">🌐</span><div class="svc-title">Website / Landing Page</div><p class="svc-desc">A sleek, fast, mobile-ready site that builds instant trust and converts visitors into paying customers.</p><span class="svc-tag">INCLUDED FREE</span></div>
+    <div class="svc"><div class="svc-num">005</div><span class="svc-icon">📈</span><div class="svc-title">Profile Optimization</div><p class="svc-desc">Bio, highlights, link-in-bio — every element tuned so visitors instantly click Follow.</p><span class="svc-tag">ONE-TIME SETUP</span></div>
+    <div class="svc"><div class="svc-num">006</div><span class="svc-icon">💡</span><div class="svc-title">Content Strategy</div><p class="svc-desc">A data-driven content calendar built around your audience, niche, and goals — no more guessing.</p><span class="svc-tag">MONTHLY</span></div>
   </div>
 </section>
 
 <!-- PRICING -->
-<section id="pricing" class="px-10 py-28">
-  <h3 class="text-4xl font-extrabold text-center mb-6">
-    Simple <span class="text-pink-500">Pricing</span>
-  </h3>
-
-  <div class="max-w-md mx-auto mt-16 bg-white/5 p-10 rounded-3xl border border-pink-500">
-    <h4 class="text-xl font-bold mb-4">✨ Starter Growth Pack</h4>
-    <p class="text-5xl font-extrabold text-pink-500 mb-6">₹3,000<span class="text-sm text-gray-400">/month</span></p>
-
-    <ul class="space-y-3 text-gray-300">
-      <li>✔ 2 Instagram Reels</li>
-      <li>✔ 3 Static Posts</li>
-      <li>✔ Full Page Management</li>
-      <li>✔ Profile Optimization</li>
-      <li>✔ 1 Website / Landing Page</li>
-    </ul>
-
-    <a href="#contact" class="block mt-10 text-center bg-gradient-to-r from-purple-500 to-pink-500 py-4 rounded-full font-bold">
-      Claim This Offer
-    </a>
+<section id="pricing">
+  <div class="section-label reveal">Pricing</div>
+  <div class="pricing-layout">
+    <div class="pricing-left reveal">
+      <div class="big-price">₹3K</div>
+      <div class="price-note">Per Month · Cancel Anytime</div>
+      <p>One flat price. No hidden fees. No confusing tiers. Just real results delivered every month for growing brands.</p>
+      <a href="https://wa.me/919084317811" class="btn-lime" style="margin-top:2rem; display:inline-flex;">Claim This Offer →</a>
+    </div>
+    <div class="pricing-card reveal">
+      <span class="plan-badge">✦ Starter Growth Pack</span>
+      <div class="plan-name">ALL-IN-ONE PACKAGE</div>
+      <div class="plan-tagline">Everything your brand needs to grow</div>
+      <div class="plan-divider"></div>
+      <ul class="plan-features">
+        <li><span class="feat-check">✓</span>2 High-Quality Instagram Reels</li>
+        <li><span class="feat-check">✓</span>3 Branded Static Posts</li>
+        <li><span class="feat-check">✓</span>Full Page Management</li>
+        <li><span class="feat-check">✓</span>Profile Optimization</li>
+        <li><span class="feat-check">✓</span>1 Website / Landing Page</li>
+        <li><span class="feat-check">✓</span>Monthly Performance Report</li>
+      </ul>
+      <a href="https://wa.me/919084317811" class="plan-cta">Get Started on WhatsApp →</a>
+    </div>
   </div>
 </section>
 
-<!-- WHY US -->
-<section id="why" class="px-10 py-28 max-w-6xl mx-auto">
-  <h3 class="text-4xl font-extrabold text-center mb-16">
-    Why <span class="text-pink-500">KickWaveSocials?</span>
-  </h3>
-
-  <div class="grid md:grid-cols-3 gap-10">
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="font-bold mb-2">Gen-Z Creators</h4>
-      <p class="text-gray-400">We understand trends because we are the audience.</p>
+<!-- WHY -->
+<section id="why">
+  <div class="why-layout">
+    <div class="reveal">
+      <div class="section-label">Why KickWave</div>
+      <div class="why-cards">
+        <div class="why-card"><div class="why-num">01</div><div class="why-content"><div class="why-title">Gen-Z Native Creators</div><p class="why-desc">We understand what's trending because we live it. Our content lands because we are the audience.</p></div></div>
+        <div class="why-card"><div class="why-num">02</div><div class="why-content"><div class="why-title">AI + Human Creativity</div><p class="why-desc">Best tools combined with real creativity. Smart enough to scale, human enough to feel authentic.</p></div></div>
+        <div class="why-card"><div class="why-num">03</div><div class="why-content"><div class="why-title">Results, Not Vanity</div><p class="why-desc">We track reach, saves, DMs, and conversions. Every post is designed with a clear business goal.</p></div></div>
+        <div class="why-card"><div class="why-num">04</div><div class="why-content"><div class="why-title">Fast Turnaround</div><p class="why-desc">Content delivered on schedule, every time. No waiting, no chasing. Just consistent quality output.</p></div></div>
+      </div>
     </div>
-
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="font-bold mb-2">AI + Human Creativity</h4>
-      <p class="text-gray-400">Best tools combined with real creativity.</p>
+    <div class="why-right reveal">
+      <div class="big-statement">WE ARE<br/>THE <span class="hl">AUDIENCE</span><br/>YOU'RE<br/>TARGETING.</div>
+      <p class="why-quote">We don't study trends from the outside — we create them from the inside. That's the KickWave difference.</p>
+      <div style="margin-top:2.5rem;"><a href="https://wa.me/919084317811" class="btn-lime">Talk to Us →</a></div>
     </div>
+  </div>
+</section>
 
-    <div class="bg-white/5 p-8 rounded-2xl border border-white/10">
-      <h4 class="font-bold mb-2">Results Focused</h4>
-      <p class="text-gray-400">Content designed to drive growth & conversions.</p>
-    </div>
+<!-- PROCESS -->
+<section id="process">
+  <div class="process-header reveal">
+    <div class="section-label">How It Works</div>
+    <h2>ZERO FRICTION<br/>ONBOARDING</h2>
+    <p class="section-sub">From first message to first post — we move fast.</p>
+  </div>
+  <div class="process-list reveal">
+    <div class="p-step"><div class="p-num">01</div><div class="p-title">Onboarding Call</div><p class="p-desc">We learn your brand, audience, and goals inside out in one focused call.</p></div>
+    <div class="p-step"><div class="p-num">02</div><div class="p-title">Strategy Build</div><p class="p-desc">Custom content calendar and visual identity direction crafted for your niche.</p></div>
+    <div class="p-step"><div class="p-num">03</div><div class="p-title">Create & Review</div><p class="p-desc">Reels, posts, and captions delivered for your approval before anything goes live.</p></div>
+    <div class="p-step"><div class="p-num">04</div><div class="p-title">Publish & Grow</div><p class="p-desc">We post at peak times, track performance weekly, and optimize continuously.</p></div>
   </div>
 </section>
 
 <!-- CTA -->
-<section id="contact" class="px-10 py-28">
-  <div class="max-w-5xl mx-auto bg-white/5 p-16 rounded-3xl border border-white/10 text-center">
-    <h3 class="text-4xl font-extrabold mb-6">
-      Ready To Grow <span class="text-pink-500">Your Brand?</span>
-    </h3>
-    <p class="text-gray-400 mb-10">
-      Let’s start your Instagram growth journey today.
-    </p>
-    <a href="https://wa.me/919084317811" class="bg-gradient-to-r from-purple-500 to-pink-500 px-10 py-4 rounded-full font-bold">
-      WhatsApp Us →
-    </a>
+<section id="contact">
+  <div class="cta-inner reveal">
+    <div class="cta-top">
+      <div class="cta-grid-bg"></div>
+      <div class="cta-glow"></div>
+      <div class="section-label">Ready to Scale?</div>
+      <h2>LET'S BUILD<br/>YOUR <span class="outline-h2">BRAND</span><br/>TOGETHER.</h2>
+      <p class="section-sub">Join 500+ brands that trusted KickWaveSocials to grow their Instagram. Your audience is waiting.</p>
+      <div class="cta-btns">
+        <a href="https://wa.me/919084317811" class="btn-lime">📲 WhatsApp Us Now</a>
+        <a href="mailto:kickwavesocials@gmail.com" class="btn-outline">✉️ Send Email</a>
+      </div>
+    </div>
+    <div class="cta-bottom">
+      <a href="tel:+919084317811" class="contact-item"><span class="contact-dot"></span>+91 9084317811</a>
+      <a href="mailto:kickwavesocials@gmail.com" class="contact-item"><span class="contact-dot"></span>kickwavesocials@gmail.com</a>
+      <a href="https://instagram.com/kickwavesocials" class="contact-item"><span class="contact-dot"></span>@kickwavesocials</a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
-<footer class="px-10 py-10 border-t border-white/10 grid md:grid-cols-3 gap-10">
-  <div>
-    <h4 class="text-pink-500 font-bold text-xl mb-2">KickWaveSocials</h4>
-    <p class="text-gray-400 text-sm">
-      Your trusted partner for Instagram growth and brand building.
-    </p>
-  </div>
-
-  <div>
-    <h4 class="font-bold mb-2">Quick Links</h4>
-    <ul class="text-gray-400 space-y-2">
-      <li>Services</li>
-      <li>Pricing</li>
-      <li>Why Us</li>
-    </ul>
-  </div>
-
-  <div>
-    <h4 class="font-bold mb-2">Get In Touch</h4>
-    <p class="text-gray-400 text-sm">📞 +91 9084317811</p>
-    <p class="text-gray-400 text-sm">📧 kickwavesocials@gmail.com</p>
-    <p class="text-gray-400 text-sm">📷 @kickwavesocials</p>
-  </div>
+<footer>
+  <a href="#" class="footer-logo">Kick<em>Wave</em>Socials</a>
+  <ul class="footer-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#why">Why Us</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <span class="footer-copy">© 2026 KickWaveSocials. All rights reserved.</span>
 </footer>
 
-<div class="text-center text-gray-500 text-sm py-4">
-  © 2026 KickWaveSocials. All rights reserved.
-</div>
-
+<script>
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+    setTimeout(() => { ring.style.left = e.clientX + 'px'; ring.style.top = e.clientY + 'px'; }, 70);
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='16px'; cursor.style.height='16px'; ring.style.width='48px'; ring.style.height='48px'; ring.style.opacity='.3'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='8px'; cursor.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; ring.style.opacity='.5'; });
+  });
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.08 });
+  reveals.forEach(el => io.observe(el));
+</script>
 </body>
 </html>
